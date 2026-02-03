@@ -1,0 +1,22 @@
+# Ambientes Virtuais (Essencial ignorar para não subir gigabytes de lixo)
+venv/
+env/
+.venv/
+
+# Configurações sensíveis (ONDE FICAM AS SENHAS)
+.env
+*.env
+db.sqlite3
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs (VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Arquivos de log e temporários
+*.log
+tmp/
