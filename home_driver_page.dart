@@ -2,37 +2,47 @@
  * Desenvolvido por: Márcio Rodrigues de Oliveira, Engenheiro de Software
  */
 
-// ... (imports anteriores)
-import 'package:flutter_map/flutter_map.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
+import 'gps_service.dart';
 
-// No estado da sua página:
-List<LatLng> _routePoints = [];
+// ... (Restantes imports)
 
-void _loadRoute() async {
-  final points = await RouteService().fetchRoute("id-da-rota");
-  setState(() {
-    _routePoints = points;
-  });
+class _HomeDriverPageState extends State<HomeDriverPage> {
+  LatLng _currentBusPosition = const LatLng(-15.793889, -47.882778);
+  StreamSubscription<Position>? _positionStreamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTracking();
+  }
+
+  void _startTracking() {
+    _positionStreamSubscription = GpsService().getPositionStream().listen((Position position) {
+      setState(() {
+        _currentBusPosition = LatLng(position.latitude, position.longitude);
+      });
+      
+      // Centraliza o mapa no autocarro automaticamente
+      _mapController.move(_currentBusPosition, 15.0);
+
+      // Aqui invocaria o seu SocketService para enviar ao Backend
+      // _socketService.emitLocation(_currentBusPosition);
+    });
+  }
+
+  @override
+  void dispose() {
+    _positionStreamSubscription?.cancel(); // Importante para evitar memory leaks
+    super.dispose();
+  }
+
+  // No widget FlutterMap, altere o MarkerLayer:
+  // Marker(
+  //   point: _currentBusPosition,
+  //   child: const Icon(Icons.directions_bus, color: Colors.blue, size: 40),
+  // ),
 }
-
-// Dentro do widget FlutterMap:
-children: [
-  TileLayer(
-    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    userAgentPackageName: 'com.cda.busescolar',
-  ),
-  // Camada que desenha a linha da rota
-  if (_routePoints.isNotEmpty)
-    PolylineLayer(
-      polylines: [
-        Polyline(
-          points: _routePoints,
-          color: Colors.blueAccent,
-          strokeWidth: 5.0,
-          isOutline: true,
-          outlineColor: Colors.black,
-        ),
-      ],
-    ),
-  // ... (MarkerLayer do ônibus)
-],
