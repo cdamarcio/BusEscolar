@@ -1,0 +1,41 @@
+# Desenvolvido por: Márcio Rodrigues de Oliveira, Engenheiro de Software
+
+version: '3.8'
+
+services:
+  # Banco de Dados Geográfico (PostgreSQL + PostGIS)
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: busescolar_db
+    restart: always
+    environment:
+      POSTGRES_USER: marcio_admin
+      POSTGRES_PASSWORD: sua_senha_forte
+      POSTGRES_DB: bus_escolar_cda
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Cache para localização em tempo real
+  redis:
+    image: redis:7-alpine
+    container_name: busescolar_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # Motor de Rotas Open Source (OSRM)
+  osrm:
+    image: osrm/osrm-backend:latest
+    container_name: busescolar_osrm
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./osrm_data:/data
+    command: osrm-routed --algorithm mld /data/mapa_municipio.osrm
+
+volumes:
+  postgres_data:
+  osrm_data:
