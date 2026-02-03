@@ -31,7 +31,7 @@ O projeto foi concebido para resolver desafios críticos na gestão pública:
 * **Notificações Push:** Alertas de proximidade (ex: "Ônibus a 2 minutos") e confirmação de chegada na unidade escolar.
 * **Gestão de Ausências:** Canal direto para informar faltas, evitando paradas desnecessárias.
 
-### 🏛️ Painel Administrativo (Gestão SME)
+### Painel Administrativo (Gestão SME)
 
 * **Monitoramento de Frota:** Controle centralizado de todas as rotas ativas em tempo real.
 * **Relatórios Gerenciais:** Dashboards com indicadores de desempenho (KPIs), KM rodado e horas trabalhadas.
