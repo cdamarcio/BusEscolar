@@ -1,5 +1,5 @@
 
-# BusEscolar - Gestão Inteligente de Transporte Público Municipal de Goiânia
+# BusEscolar
 
 **Desenvolvido por:** Márcio Rodrigues de Oliveira, Engenheiro de Software
 
@@ -63,5 +63,6 @@ O projeto segue rigorosos padrões de proteção de dados:
 * **Privacidade:** O histórico de localização é anonimizado após o período letivo para fins estatísticos e auditoria.
 
 ## Licença
+
 
 Este software é de propriedade da KM PROJETOS. O uso ou reprodução sem autorização do desenvolvedor Márcio Rodrigues de Oliveira é estritamente proibida.
