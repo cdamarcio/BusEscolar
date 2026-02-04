@@ -1,8 +1,6 @@
 
 # BusEscolar
 
-**Desenvolvido por:** Márcio Rodrigues de Oliveira, Engenheiro de Software
-
 O **BusEscolar** é uma solução tecnológica robusta desenvolvida para a **Secretaria Municipal de Educação (SME)**. O sistema visa modernizar a logística escolar, garantindo a segurança dos alunos da rede pública e a transparência na gestão de recursos municipais através do monitoramento em tempo real.
 
 
@@ -66,3 +64,4 @@ O projeto segue rigorosos padrões de proteção de dados:
 
 
 Este software é de propriedade da KM PROJETOS. O uso ou reprodução sem autorização do desenvolvedor Márcio Rodrigues de Oliveira é estritamente proibida.
+
